@@ -22,6 +22,9 @@ const newRandomCard = () => {
 }
 
 class App extends Component {
+  static defaultProps = {
+    cards: [],
+  }
   state = { 
     store: STORE
   }

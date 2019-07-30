@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import renderer from 'react-test-renderer';
 import List from './List';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json'
+
+configure({ adapter: new Adapter() });
 
 const cards = [{ id: 'a', title: 'First card', content: 'lorem ipsum' }, { id: 'm', title: 'Thirteenth card', content: 'lorem ipsum' }];
 describe('List component', () => {
@@ -11,15 +16,11 @@ describe('List component', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
   it('renders the UI as expected', () => {
-    const tree = renderer
-      .create(<List cards={cards} />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const wrapper = shallow(<List cards={cards}/>)
+    expect(toJSON(wrapper)).toMatchSnapshot()
   });
   it('renders an empty list of cards', () => {
-    const tree = renderer
-      .create(<List cards={[]} />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const wrapper = shallow(<List />)
+    expect(toJSON(wrapper)).toMatchSnapshot()
   });
 })

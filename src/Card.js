@@ -1,7 +1,7 @@
 import React from 'react';
 import './Card.css';
 
-function Cards(props) {
+function Card(props) {
   return (
     <div className="Card">
       <button 
@@ -15,9 +15,5 @@ function Cards(props) {
   )
 }
 
-Cards.propTypes = {
-  handleDeleteButton: () => {}
-}
 
-
-export default Cards;
+export default Card;
